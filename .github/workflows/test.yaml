@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs: 
       base-directory:
-        description: 'relative path in the repository of the root folder in which to search for to search for protocols'
+        description: 'relative path in the repository of the root folder, in which to search for to search for protocols'
         required: false
         default: 'protocols'
         type: string
@@ -30,6 +30,14 @@ jobs:
           BASE_DIRECTORY: ${{ github.event.inputs.base-directory }}
           OUTPUT_TYPE: ${{ github.event.inputs.output-type }}
         uses: DerekMaggio/ot-analyze@add-different-output-options
+      
+      - name: Upload Zip File
+        if: ${{ github.event.inputs.output-type }} == 'zip'
+        uses: actions/upload-artifact@v3
+        with:
+          name: zipped-results
+          path: ${{ github.workspace }}/${{github.event.inputs.base-directory}}/protocols_and_analyses.zip
+
       # - name: Create Pull Request
       #   uses: peter-evans/create-pull-request@v5
       #   with:
