@@ -30,7 +30,7 @@ jobs:
           BASE_DIRECTORY: ${{ github.event.inputs.base-directory }}
           OUTPUT_TYPE: ${{ github.event.inputs.output-type }}
         uses: DerekMaggio/ot-analyze@add-different-output-options
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          base: ${{ github.head_ref }}
+      # - name: Create Pull Request
+      #   uses: peter-evans/create-pull-request@v5
+      #   with:
+      #     base: ${{ github.head_ref }}
