@@ -9,15 +9,6 @@ on:
         required: false
         default: 'protocols'
         type: string
-      output-type:
-        description: 'type of output the action generates'
-        required: false
-        default: 'none'
-        type: choice
-        options:
-          - 'none'
-          - 'zip'
-          - 'markdown'
 
 jobs:
   build:
@@ -28,11 +19,9 @@ jobs:
       - name: Analyze
         env:
           BASE_DIRECTORY: ${{ github.event.inputs.base-directory }}
-          OUTPUT_TYPE: ${{ github.event.inputs.output-type }}
         uses: DerekMaggio/ot-analyze@add-different-output-options
       
       - name: Upload Zip File
-        if: ${{ github.event.inputs.output-type }} == 'zip'
         uses: actions/upload-artifact@v3
         with:
           name: zipped-results
