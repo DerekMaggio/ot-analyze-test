@@ -20,20 +20,12 @@ jobs:
         env:
           BASE_DIRECTORY: ${{ github.event.inputs.base-directory }}
         uses: DerekMaggio/ot-analyze@add-different-output-options
-      
-      - name: Upload Zip File
+
+
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: zipped-results
-          path: ${{ github.workspace }}/protocols_and_analyses.zip
-
-      - name: Upload Markdown Summary
-        uses: actions/upload-artifact@v3
-        with:
-          name: summary
-          path: ${{ github.workspace }}/protocols_and_analyses.md
-
-      # - name: Create Pull Request
-      #   uses: peter-evans/create-pull-request@v5
-      #   with:
-      #     base: ${{ github.head_ref }}
+          name: analysis-results
+          path: |
+            ${{ github.workspace }}/protocols_and_analyses.zip
+            ${{ github.workspace }}/summary.md
