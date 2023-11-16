@@ -27,6 +27,12 @@ jobs:
           name: zipped-results
           path: ${{ github.workspace }}/protocols_and_analyses.zip
 
+      - name: Upload Markdown Summary
+        uses: actions/upload-artifact@v3
+        with:
+          name: summary
+          path: ${{ github.workspace }}/protocols_and_analyses.md
+
       # - name: Create Pull Request
       #   uses: peter-evans/create-pull-request@v5
       #   with:
